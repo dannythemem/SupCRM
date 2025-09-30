@@ -1,3 +1,12 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
    font-family: 'Courier New', monospace;
    background-color: #282c34;
@@ -21,14 +30,93 @@ h1 {
 
 
 .blog-card {
-   padding: 20px;
-   margin-bottom: 30px;
-   background-color: #343a40;
-   text-align: center;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #343a40;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.blog-card:hover{
+    background-color: #2E343B;
 }
 
 
 a {
- text-decoration: none;
- color: #ff7f50;
+    text-decoration: none;
+    color: #ff7f50;
+}
+
+header {
+  background-color: #434242;
+  margin-bottom: 30px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  height: 100px;
+  width: 100%;
+}
+
+
+.logo {
+  color: #ff7f50;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+
+}
+
+.link {
+  margin-left: 25px;
+}
+
+a img {
+  width: 35px;
+   object-fit: contain;
+}
+
+form{
+    background-color: #595A5C;
+    padding: 30px;
+    border-radius: 30px;
+    margin: auto;
+    width: 700px;
+}
+
+input, textarea{
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+textarea {
+  resize: vertical;
+}
+
+input:hover,
+textarea:hover {
+    border: 2px solid #A7A4A4;
+    background-color: #DDDCDC;
+}
+
+.form-btn{
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-btn:hover{
+    background-color: #1982D5;
 }

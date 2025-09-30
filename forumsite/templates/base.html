@@ -8,8 +8,20 @@
     <link type="text/css" href="{% static 'posts/css/style.css ' %}" rel="stylesheet">
 </head>
 <body>
-    {% block content %}
+<header>
+  <div class="container header-container">
+    <h1 class="logo">Forum</h1>
+    <div class="header-links">
+      <a href=""><img class="link" src="{% static 'posts/images/bubble-chat.png' %}"></a>
+      <a href="{% url 'add' %}"><img class="link" src="{% static 'posts/images/plus.png' %}"></a>
+      <a href=""><img class="link" src="{% static 'posts/images/bell.png' %}"></a>
+      <a href=""><img class="link" src="{% static 'posts/images/user.png' %}"></a>
+    </div>
+  </div>
+</header>
 
+
+    {% block content %}
     {% endblock %}
 </body>
 </html>
