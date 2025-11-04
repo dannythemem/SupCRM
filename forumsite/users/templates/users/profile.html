@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="profile-wrapper">
+    <div class = "profile-main">
+        <div class="profile-info">
+          <div class = "profile-pic">
+            {% if user.photo  %}
+              <a href="{% url 'users:profile' user.username %}"><img src="{{ user.photo.url }}" alt="Аватар"></a>
+            {% else %}
+              <a href="{% url 'users:profile' user.username %}"><img src="{% static 'icons/user.png' %}" alt="Аватар"></a>
+            {% endif %}
+          </div>
+        <h1> {{user.username}} </h1>
+        </div>
+        <div class="profile-about-links">
+          <a href="{% url 'users:my_posts' viewed_user.username %}">Посты</a>
+          <a href="/comments">Комментарии</a>
+          <a href="/liked">"Нравится"</a>
+          <a href="/unliked">"Не нравится"</a>
+        </div>
+        <hr>
+        {% block posts %}
+
+        {% endblock %}
+  </div>
+
+
+
+
+</div>
+
+
+
+{% endblock %}
+

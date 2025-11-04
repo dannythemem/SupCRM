@@ -1,8 +1,7 @@
-body, html {
-  margin: 0;
-  padding: 0;
+:root{
+  --main-text-color: #dbe4e9;
+  --main-text-hover-color: #FFFFFF;
 }
-
 * {
   box-sizing: border-box;
 }
@@ -10,17 +9,23 @@ body, html {
 body {
    font-family: 'Courier New', monospace;
    background-color: #000000;
-   color: #eee;
    line-height: 1.6;
+   margin: 0;
+   padding: 0;
+   height: 100%;
 }
 
 h1{
    font-weight: 300;
    text-align: center;
+   color: var(--main-text-color);
+}
+
+.main-page-blog{
+   margin: auto;
 }
 
 .blog {
-   margin: auto;
    max-width: 800px;
 }
 
@@ -36,9 +41,9 @@ h1{
     background-color: #1F262B;
 }
 
-.blog-card a {
+.blog-card a, .blog-card p, form p, .blog p {
     text-decoration: none;
-    color: #dbe4e9;
+    color: var(--main-text-color);
 }
 
 header {
@@ -56,7 +61,6 @@ header {
 
 
 .logo {
-  color: #dbe4e9;
   font-size: 25px;
   font-weight: bold;
 }
@@ -172,13 +176,13 @@ textarea:hover {
 
 .dropdown a {
   display: block;
-  color: #F1F0F0;
+  color: var(--main-text-color);
   padding: 8px;
   text-decoration: none;
 }
 
-.dropdown a:hover {
-  color: #FFFFFF;
+.dropdown a:hover, .profile-about-links a:hover, .dropdownMenu-text:hover {
+  color: var(--main-text-hover-color);
 }
 
 .menu-btn img{
@@ -197,7 +201,7 @@ textarea:hover {
    border-radius: 20px;
 
    align-items: center;
-   color: #F1F0F0;
+   color: var(--main-text-color);
    font-family: 'Courier New', monospace;
    font-size: inherit;
    line-height: inherit;
@@ -211,7 +215,7 @@ textarea:hover {
     border: none;
     cursor: pointer;
     background-color: #1a1a1a;
-    color: #F1F0F0;
+    color: var(--main-text-color);
     font-family: 'Courier New', monospace;
     font-size: inherit;
     line-height: inherit;
@@ -228,7 +232,7 @@ button.dropdown button {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: white;
+  color: var(--main-text-color);
   background: none;
   border: none;
 }
@@ -239,3 +243,47 @@ button.dropdown button {
 
 }
 
+.profile-wrapper{
+   display: flex;
+   justify-content: center;
+   height: 100vh;
+}
+
+.profile-main {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  width: 100%;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-pic img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-about-links a{
+  color: var(--main-text-color);
+  text-decoration: none;
+  padding-right: 25px;
+
+}
+
+hr {
+  border: none;
+  height: 0.5px;
+  width: 100%;
+  background-color: var(--main-text-color);
+  margin: 20px 0;
+}
+
+.profile-no-content{
+    text-align: center;
+}

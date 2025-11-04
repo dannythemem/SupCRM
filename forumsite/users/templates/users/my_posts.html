@@ -1,0 +1,20 @@
+{% extends 'users/profile.html' %}
+{% load static %}
+
+{% block posts %}
+<div class="blog">
+  {% for post in posts %}
+  <div class="blog-card">
+    <h2> <a href="">{{ post.title }}</a> </h2>
+    <p>{{ post.content }}</p>
+  </div>
+  {% empty %}
+  <div class="profile-no-content">
+    <img src="{% static 'icons/no_content_guy.png' %}" width="75px">
+    <p>У пользователя пока нет постов</p>
+  </div>
+
+
+  {% endfor %}
+</div>
+{% endblock %}

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
-    <link type="text/css" href="{% static 'posts/css/style.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -13,24 +13,24 @@
       <a href="{% url 'home' %}"><h1 class="logo">Forum</h1></a>
     <div class="header-links">
         {% if user.is_authenticated %}
-            <button class="menu-btn"><img class="link" src="{% static 'posts/icons/bubble-chat.png' %}"></button>
-            <button onclick="location.href = '{% url 'add' %}'" class="menu-btn"><img class="link" src="{% static 'posts/icons/plus.png' %}">Создать</button>
-            <button class="menu-btn"><img class="link" src="{% static 'posts/icons/bell.png' %}"></button>
+            <button class="menu-btn"><img class="link" src="{% static 'icons/bubble-chat.png' %}"></button>
+            <button onclick="location.href = '{% url 'add' %}'" class="menu-btn"><img class="link" src="{% static 'icons/plus.png' %}">Создать</button>
+            <button class="menu-btn"><img class="link" src="{% static 'icons/bell.png' %}"></button>
             <div class="profile-menu-container">
-              <button id="profileBtn" class="menu-btn"><img class="link" src="{% static 'posts/icons/user.png' %}"></button>
+              <button id="profileBtn" class="menu-btn"><img class="link" src="{% static 'icons/user.png' %}"></button>
               <div id="dropdownMenu" class="dropdown hidden">
-                <a href="/profile">
-                    <img src="{% static 'posts/icons/user.png' %}" class = "dropdownMenu-icon">
+                <a href="{% url 'users:profile' user.username %}">
+                    <img src="{% static 'icons/user.png' %}" class = "dropdownMenu-icon">
                     Просмотр профиля
                 </a>
                 <a href="/edit-avatar">
-                    <img src="{% static 'posts/icons/edit.png' %}" class = "dropdownMenu-icon">
+                    <img src="{% static 'icons/edit.png' %}" class = "dropdownMenu-icon">
                     Редактировать аватар
                 </a>
                 <form method="post" action="{% url 'users:logout' %}" style="display: inline; background: none;">
                     {% csrf_token %}
                     <button type="submit" class="dropdownMenu-btn">
-                        <img src="{% static 'posts/icons/exit.png' %}" class = "dropdownMenu-icon">
+                        <img src="{% static 'icons/exit.png' %}" class = "dropdownMenu-icon">
                         <span class="dropdownMenu-text">Выйти</span>
                     </button>
                 </form>
@@ -46,6 +46,6 @@
 
     {% block content %}
     {% endblock %}
-     <script src="{% static 'posts/js/main.js' %}" type="module"></script>
+     <script src="{% static 'js/main.js' %}" type="module"></script>
 </body>
 </html>
