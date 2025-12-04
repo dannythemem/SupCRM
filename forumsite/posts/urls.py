@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import PostsHome, AddPost
+from . import views
 
 urlpatterns = [
-    path('', PostsHome.as_view(), name='home'),
-    path('add/', AddPost.as_view(), name='add'),
+    path('', views.PostsHome.as_view(), name='home'),
+    path('add/', views.AddPost.as_view(), name='add'),
+    path('posts/<int:post_id>/<str:status>/', views.react_post, name='react' ),
+
 ]

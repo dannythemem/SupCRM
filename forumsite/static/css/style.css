@@ -13,6 +13,7 @@ body {
    margin: 0;
    padding: 0;
    height: 100%;
+   color: var(--main-text-color);
 }
 
 h1{
@@ -33,7 +34,6 @@ h1{
     padding: 20px;
     margin-bottom: 30px;
     background-color: #181c1f;
-    text-align: center;
     border-radius: 10px;
 }
 
@@ -286,4 +286,77 @@ hr {
 
 .profile-no-content{
     text-align: center;
+}
+
+.blog-card-buttons{
+    display: flex;
+}
+
+.blog-card-buttons{
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+
+}
+
+.blog-card-btn{
+    background-color: #4E616F;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    height: 30px;
+}
+
+.blog-card-reaction-like{
+    background-color: #D93900;
+}
+.blog-card-reaction-dislike{
+    background-color: #6A5CFF;
+}
+
+.blog-card-reaction-like > :nth-child(1):hover,
+.blog-card-reaction-like > :nth-child(5):hover{
+    background-color: #AE2E00;
+    border-radius: 20px;
+}
+
+.blog-card-reaction-dislike > :nth-child(1):hover,
+.blog-card-reaction-dislike > :nth-child(5):hover{
+    background-color: #493FB9;
+    border-radius: 20px;
+}
+
+.blog-card-inactive > :nth-child(1):hover svg path{
+    fill: #D93900;
+}
+
+.blog-card-inactive > :nth-child(5):hover svg path{
+    fill: #6A5CFF;
+}
+
+.blog-card-btn a{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0px 6px;
+}
+
+.blog-card-reaction .line{
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.reaction{
+  width: 30px;
+  height: 30px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog-card-buttons > :nth-child(2):hover,
+.blog-card-buttons > :nth-child(3):hover {
+    background-color: #586E7E;
 }

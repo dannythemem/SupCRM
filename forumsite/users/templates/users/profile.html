@@ -18,8 +18,8 @@
         <div class="profile-about-links">
           <a href="{% url 'users:my_posts' viewed_user.username %}">Посты</a>
           <a href="/comments">Комментарии</a>
-          <a href="/liked">"Нравится"</a>
-          <a href="/unliked">"Не нравится"</a>
+          <a href="{% url 'users:liked_posts' viewed_user.username %}">"Нравится"</a>
+          <a href="{% url 'users:disliked_posts' viewed_user.username %}">"Не нравится"</a>
         </div>
         <hr>
         {% block posts %}

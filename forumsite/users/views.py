@@ -3,9 +3,11 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views import generic
-from posts.models import Posts
+from django.views.generic import CreateView, DetailView, ListView
+
+from posts.models import Posts, Like
 from users.forms import LoginUserForm, RegisterUserForm
+from users.mixins import UsersPostsFilterMixin
 
 
 # Create your views here.
@@ -15,13 +17,13 @@ class LoginUser(LoginView):
     template_name = 'users/login.html'
     extra_context = {'title': 'Авторизация'}
 
-class RegisterUser(generic.CreateView):
+class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'users/register.html'
     extra_context = {'title': 'Регистрация'}
     success_url = reverse_lazy('users:login')
 
-class ProfileUser(generic.DetailView):
+class ProfileUser(DetailView):
     model = get_user_model()
     template_name = 'users/profile.html'
     slug_field = 'username'
@@ -36,19 +38,19 @@ class ProfileUser(generic.DetailView):
         return context
 
 
-class UsersPosts(generic.ListView):
-    template_name = 'users/my_posts.html'
-    context_object_name = 'posts'
+class UsersPosts(UsersPostsFilterMixin):
+    empty_list_text = 'У пользователя пока нет постов'
+    reaction_type = None
 
-    def get_queryset(self):
-        username = self.kwargs.get('username')
-        user = get_object_or_404(get_user_model(), username=username)
-        return Posts.objects.filter(author=user)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        username = self.kwargs.get('username')
-        context['viewed_user'] = get_object_or_404(get_user_model(), username=username)
-        context['title'] = get_object_or_404(get_user_model(), username=username).username
-        return context
+class UsersLikedPosts(UsersPostsFilterMixin):
+    empty_list_text = 'У пользователя пока нет лайкнутых постов'
+    reaction_type = Like.Status.LIKED
+
+
+class UsersDislikedPosts(UsersPostsFilterMixin):
+    empty_list_text = 'У пользователя пока нет дизлайкнутых постов'
+    reaction_type = Like.Status.DISLIKED
+
+
 
