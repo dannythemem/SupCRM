@@ -7,6 +7,7 @@
   <div class="blog-card">
     <h2> <a href="">{{ post.title }}</a> </h2>
     <p>{{ post.content }}</p>
+    {% include "posts/partials/blog_card_buttons.html" %}
   </div>
   {% empty %}
   <div class="profile-no-content">

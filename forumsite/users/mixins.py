@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 
-from posts.models import Posts
+from posts.models import Posts, Like
 
 
 class UsersPostsFilterMixin(ListView):
@@ -20,6 +21,9 @@ class UsersPostsFilterMixin(ListView):
         return Posts.objects.filter(
             posts_likes__user=user,
             posts_likes__reaction_type=self.reaction_type
+        ).annotate(
+            num_likes=Count('posts_likes', filter=Q(posts_likes__reaction_type=Like.Status.LIKED)),
+            num_dislikes=Count('posts_likes', filter=Q(posts_likes__reaction_type=Like.Status.DISLIKED)),
         )
 
     def get_context_data(self, **kwargs):
