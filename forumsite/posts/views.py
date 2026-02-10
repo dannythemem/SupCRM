@@ -10,6 +10,7 @@ from posts.forms import AddPostForm
 from posts.models import Posts, Like
 from django.contrib.auth.models import User
 
+from slugify import slugify
 # Create your views here.
 
 
@@ -21,10 +22,7 @@ class PostsHome(ListView):
     def get_queryset(self):
         return (Posts.published
             .all()
-            .annotate(
-                num_likes=Count('posts_likes', filter=Q(posts_likes__reaction_type=Like.Status.LIKED)),
-                num_dislikes=Count('posts_likes', filter=Q(posts_likes__reaction_type=Like.Status.DISLIKED)),
-            )
+            .with_reactions()
         )
 
     def get_context_data(self, **kwargs):
@@ -70,9 +68,14 @@ class AddPost(LoginRequiredMixin, CreateView):
         f.author = self.request.user
         return super().form_valid(form)
 
-class PostView(LoginRequiredMixin, DetailView):
+class CommentsView(LoginRequiredMixin, DetailView):
     model = Posts
-    template_name = 'posts/post.html'
+    template_name = 'posts/comments.html'
     context_object_name = 'post'
 
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.object
+        context['post'] = Posts.objects.with_reactions().get(pk = self.kwargs['pk'])
+        context['title'] = post.title
+        return context

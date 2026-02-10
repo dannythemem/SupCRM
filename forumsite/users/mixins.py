@@ -21,10 +21,7 @@ class UsersPostsFilterMixin(ListView):
         return Posts.objects.filter(
             posts_likes__user=user,
             posts_likes__reaction_type=self.reaction_type
-        ).annotate(
-            num_likes=Count('posts_likes', filter=Q(posts_likes__reaction_type=Like.Status.LIKED)),
-            num_dislikes=Count('posts_likes', filter=Q(posts_likes__reaction_type=Like.Status.DISLIKED)),
-        )
+        ).with_reactions()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
