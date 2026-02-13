@@ -31,10 +31,11 @@ class ProfileUser(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = self.request.user
-        username = self.kwargs.get('username')
-        context['viewed_user'] = get_object_or_404(get_user_model(), username=username)
-        context["title"] = user.username
+        logged_user = self.request.user #тот кто залогинен
+        context["logged_user"] = logged_user.username
+
+        viewed_user = self.kwargs.get('username') #тот кого смотрим
+        context['viewed_user'] = get_object_or_404(get_user_model(), username=viewed_user)
         return context
 
 

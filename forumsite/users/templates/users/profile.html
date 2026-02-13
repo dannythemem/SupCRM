@@ -13,13 +13,14 @@
               <a href="{% url 'users:profile' user.username %}"><img src="{% static 'icons/user.png' %}" alt="Аватар"></a>
             {% endif %}
           </div>
-        <h1> {{user.username}} </h1>
+        <h1> {{viewed_user.username}} </h1>
         </div>
         <div class="profile-about-links">
           <a href="{% url 'users:my_posts' viewed_user.username %}">Посты</a>
           <a href="/comments">Комментарии</a>
           <a href="{% url 'users:liked_posts' viewed_user.username %}">"Нравится"</a>
           <a href="{% url 'users:disliked_posts' viewed_user.username %}">"Не нравится"</a>
+          <a href="/comments">Скрытые</a>
         </div>
         {% block posts %}
 

@@ -17,11 +17,15 @@ class UsersPostsFilterMixin(ListView):
         user = get_object_or_404(get_user_model(), username=username)
 
         if self.reaction_type is None:
-            return Posts.objects.filter(author=user).with_reactions()
-        return Posts.objects.filter(
-            posts_likes__user=user,
-            posts_likes__reaction_type=self.reaction_type
-        ).with_reactions()
+            posts =  Posts.objects.filter(author=user)
+        else:
+            posts = Posts.objects.filter(
+                id__in = Like.objects.filter( #id постов входит в список лайкнутых конкретным юзером
+                    user = user,
+                    reaction_type=self.reaction_type,
+                ).values('post_id')
+            )
+        return posts.with_reactions()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
