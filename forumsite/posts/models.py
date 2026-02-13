@@ -3,7 +3,7 @@ from email.policy import default
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Count, Q
-from django.utils.text import slugify
+from slugify import slugify
 from translate import Translator
 from unidecode import unidecode
 # Create your models here.
@@ -48,6 +48,7 @@ class Posts(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
+        print(slugify(self.title), self.title)
         super().save(*args, **kwargs)
 
     @property #чтобы можно было использовать как метод в шаблоне

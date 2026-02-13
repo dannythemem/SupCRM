@@ -21,7 +21,6 @@
           <a href="{% url 'users:liked_posts' viewed_user.username %}">"Нравится"</a>
           <a href="{% url 'users:disliked_posts' viewed_user.username %}">"Не нравится"</a>
         </div>
-        <hr>
         {% block posts %}
 
         {% endblock %}

@@ -3,6 +3,7 @@
 
 {% block posts %}
 <div class="blog">
+  <hr>
   {% for post in posts %}
   <div class="blog-card">
     <h2> <a href="{% url 'comments' post.id post.slug %}">{{ post.title }}</a> </h2>

@@ -17,7 +17,7 @@ class UsersPostsFilterMixin(ListView):
         user = get_object_or_404(get_user_model(), username=username)
 
         if self.reaction_type is None:
-            return Posts.objects.filter(author=user)
+            return Posts.objects.filter(author=user).with_reactions()
         return Posts.objects.filter(
             posts_likes__user=user,
             posts_likes__reaction_type=self.reaction_type
