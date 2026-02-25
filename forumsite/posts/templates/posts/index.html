@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load posts_tags %}
 
 {% block content %}
 
@@ -7,6 +8,8 @@
 <div class="blog main-page-blog">
   {% for post in posts %}
   <div class="blog-card">
+    <h5>{{ post.author.username }}</h5>
+    <h5>{% time_ago post.time_created %}</h5>
     <h2> <a href="{% url 'comments' post.id post.slug %}">{{ post.title }}</a> </h2>
     <p>{{ post.content }}</p>
     {% include "posts/partials/blog_card_buttons.html" %}

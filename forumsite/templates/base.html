@@ -9,6 +9,11 @@
 </head>
 <body>
 <header>
+<script>
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    document.cookie = "django_timezone=" + timezone;
+</script>
+
   <div class="container header-container">
       <a href="{% url 'home' %}"><h1 class="logo">Forum</h1></a>
     <div class="header-links">

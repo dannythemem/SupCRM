@@ -22,6 +22,10 @@ h1{
    color: var(--main-text-color);
 }
 
+h5{
+    margin: 0px;
+}
+
 .main-page-blog{
    margin: auto;
 }
