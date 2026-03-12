@@ -6,4 +6,5 @@ urlpatterns = [
     path('add/', views.AddPost.as_view(), name='add'),
     path('posts/<int:post_id>/<str:status>/', views.react_post, name='react' ),
     path('comments/<int:pk>/<slug:slug>', views.CommentsView.as_view(), name='comments'),
+    path('posts/toggle-post-status/<int:post_id>', views.toggle_post_status, name='toggle-post-status'),
 ]

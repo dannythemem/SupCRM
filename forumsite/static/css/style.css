@@ -41,6 +41,19 @@ h5{
     border-radius: 10px;
 }
 
+.blog-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+.blog-card-header-element{
+    display: flex;
+    flex-direction: row;
+}
+
+.blog-card-header h5{
+    margin-right: 10px;
+}
+
 .blog-card:hover{
     background-color: #1F262B;
 }

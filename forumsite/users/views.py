@@ -41,8 +41,6 @@ class ProfileUser(DetailView):
 
 class UsersPosts(UsersPostsFilterMixin):
     empty_list_text = 'У пользователя пока нет постов'
-    reaction_type = None
-
 
 class UsersLikedPosts(UsersPostsFilterMixin):
     empty_list_text = 'У пользователя пока нет лайкнутых постов'
@@ -52,6 +50,10 @@ class UsersLikedPosts(UsersPostsFilterMixin):
 class UsersDislikedPosts(UsersPostsFilterMixin):
     empty_list_text = 'У пользователя пока нет дизлайкнутых постов'
     reaction_type = Like.Status.DISLIKED
+
+class UsersHiddenPosts(UsersPostsFilterMixin):
+    empty_list_text = 'У пользователя пока нету скрытых постов'
+    published = False
 
 
 

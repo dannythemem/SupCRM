@@ -57,6 +57,10 @@ class Posts(models.Model):
         user_likes = [like.user for like in self.posts_likes.filter(reaction_type=Like.Status.LIKED)]
         return Reactions(user_likes, user_dislikes)
 
+    @property
+    def is_post_published(self):
+        return self.is_published
+
 
     class Meta:
         ordering = ['-time_created']

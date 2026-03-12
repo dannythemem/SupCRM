@@ -7,6 +7,7 @@ from posts.models import Posts, Like
 
 
 class UsersPostsFilterMixin(ListView):
+    published = True
     reaction_type = None
     empty_list_text = None
     template_name = 'users/my_posts.html'
@@ -17,19 +18,21 @@ class UsersPostsFilterMixin(ListView):
         user = get_object_or_404(get_user_model(), username=username)
 
         if self.reaction_type is None:
-            posts =  Posts.objects.filter(author=user)
+            posts =  Posts.objects.filter(author=user, is_published=self.published)
         else:
             posts = Posts.objects.filter(
                 id__in = Like.objects.filter( #id постов входит в список лайкнутых конкретным юзером
                     user = user,
                     reaction_type=self.reaction_type,
                 ).values('post_id')
-            )
+            ).filter(is_published=self.published)
         return posts.with_reactions()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         username = self.kwargs.get('username')
+        logged_user = self.request.user
+        context["logged_user"] = logged_user.username
         context['viewed_user'] = get_object_or_404(get_user_model(), username=username)
         context['title'] = get_object_or_404(get_user_model(), username=username).username
         context['empty_list_text'] = self.empty_list_text

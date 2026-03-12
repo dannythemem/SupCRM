@@ -20,7 +20,9 @@
           <a href="/comments">Комментарии</a>
           <a href="{% url 'users:liked_posts' viewed_user.username %}">"Нравится"</a>
           <a href="{% url 'users:disliked_posts' viewed_user.username %}">"Не нравится"</a>
-          <a href="/comments">Скрытые</a>
+          {% if logged_user == viewed_user.username %}
+            <a href="{% url 'users:hidden_posts' viewed_user.username %}">Скрытые</a>
+          {% endif %}
         </div>
         {% block posts %}
 

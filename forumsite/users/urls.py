@@ -12,5 +12,5 @@ urlpatterns = [
     path('profile/<str:username>/posts/', views.UsersPosts.as_view(), name='my_posts'),
     path('profile/<str:username>/liked_posts/', views.UsersLikedPosts.as_view(), name='liked_posts'),
     path('profile/<str:username>/disliked_posts/', views.UsersDislikedPosts.as_view(), name='disliked_posts'),
-
+    path('profile/<str:username>/hidden_posts/', views.UsersHiddenPosts.as_view(), name='hidden_posts'),
 ]

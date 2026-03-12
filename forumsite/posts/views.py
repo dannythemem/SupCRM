@@ -4,6 +4,7 @@ from django.db.models import Count, Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.views import View
 from django.views.generic import ListView, CreateView, DetailView
 
 from posts.forms import AddPostForm
@@ -50,11 +51,7 @@ def react_post(request, post_id, status):
         else:
             like.reaction_type = Like.Status.DISLIKED
             like.save()
-    referer = request.META.get('HTTP_REFERER')
-    if referer:
-        return redirect(referer)
-    else:
-        return redirect('home')
+    return redirect(request.META.get('HTTP_REFERER', reverse('home')))
 
 class AddPost(LoginRequiredMixin, CreateView):
     model = Posts
@@ -79,3 +76,9 @@ class CommentsView(LoginRequiredMixin, DetailView):
         context['post'] = Posts.objects.with_reactions().get(pk = self.kwargs['pk'])
         context['title'] = post.title
         return context
+
+def toggle_post_status(request, post_id):
+    post = get_object_or_404(Posts, id=post_id)
+    post.is_published = not post.is_published
+    post.save()
+    return redirect(request.META.get('HTTP_REFERER', reverse('home')))

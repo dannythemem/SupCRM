@@ -1,11 +1,25 @@
 {% extends 'users/profile.html' %}
 {% load static %}
+{% load posts_tags %}
 
 {% block posts %}
 <div class="blog">
   <hr>
   {% for post in posts %}
   <div class="blog-card">
+    <div class="blog-card-header">
+      <div class="blog-card-header-element">
+        <h5>{{ post.author.username }}</h5>
+        <h5>{% time_ago post.time_created %}</h5>
+      </div>
+      {% if logged_user == post.author.username %}
+        <div class="blog-card-header-element">
+          <h5> <a href="">Удалить</a> </h5>
+          <h5> <a href="">Изменить</a> </h5>
+          <h5> <a href="{% url 'toggle-post-status' post.id %}">{% if post.is_post_published %} Скрыть {% else %} Показать {% endif %}</a> </h5>
+        </div>
+      {% endif %}
+    </div>
     <h2> <a href="{% url 'comments' post.id post.slug %}">{{ post.title }}</a> </h2>
     <p>{{ post.content }}</p>
     {% include "posts/partials/blog_card_buttons.html" %}
