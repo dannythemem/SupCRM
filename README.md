@@ -1,2 +1,2 @@
-# SupCRM
-CRM system as a django pet project
+# ForumSite
+ForumSite as a django pet project
